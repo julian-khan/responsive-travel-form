@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created using a text editor -->
+
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xl="http://www.w3.org/1999/xlink"
+   width="55px"
+   height="55px"
+   preserveAspectRatio="xMidYMid"
+   viewBox="0 0 204 204">
+  <defs>
+    <clipPath id="GlobeClip">
+       <circle cx="0" cy="0" r="102"/>
+    </clipPath>
+    <circle id="Globe" cx="0" cy="0" r="100" stroke="rgb(0,75,0)"
+	    fill="rgb(0,150,150)" fill-opacity="0.25"/>
+    <line id="lat" x1="-100" x2="100" y1="0" y2="0"
+	    stroke="rgb(0,75,0)" stroke-width="2"/> 
+  </defs>
+  <g transform="translate(102,102)" clip-path="url(#GlobeClip)">
+    <use xl:href="#Globe" stroke-width="4" />
+    <use xl:href="#Globe" transform="scale(.80,1)"
+	 stroke-width="4"/>
+    <use xl:href="#Globe" transform="scale(.60,1)"
+	 stroke-width="5"/>
+    <use xl:href="#Globe" transform="scale(.40,1)"
+	 stroke-width="7"/>
+    <use xl:href="#Globe" transform="scale(.20,1)"
+	 stroke-width="10"/>
+    <use xl:href="#lat" transform="translate(0,75)" />
+    <use xl:href="#lat" transform="translate(0,50)" />
+    <use xl:href="#lat" transform="translate(0,25)" />
+    <use xl:href="#lat" transform="translate(0,0)" />
+    <use xl:href="#lat" transform="translate(0,-25)" />
+    <use xl:href="#lat" transform="translate(0,-50)" />
+    <use xl:href="#lat" transform="translate(0,-75)" />
+  </g>
+</svg>

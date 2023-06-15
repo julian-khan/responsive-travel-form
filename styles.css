@@ -1,0 +1,661 @@
+/* Apply universal font styling to every element contained within the body element through inheritance. The margin of the
+body is set to 0 to eliminate the default margins applied to the body by the browser. */
+body {
+  font-family: helvetica, tahoma, sans-serif;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255);
+  color: black;
+  margin: 0;
+}
+
+/* Set the width of the banner image so that it scales up and down with the viewport size. */
+header > picture img  {
+  width: 100%;
+  height:auto;
+  margin-bottom: -0.28em; /*Eliminates gap between banner image and nav bar. */
+}
+
+/* -- The following selectors format the nav element on each webpage, which contains
+the website's navigation links. -- */
+
+/* Set the nav bar's colour and border, as well as apply padding of 0.2em on all four sides. */
+header nav {
+  background-color: #3170bc;
+  border: 2px solid rgb(6, 15, 13);
+  padding: 0.2em;
+}
+
+/* Set the width of the nav bar logo to 55px, which is the width of the image. Setting the width
+of images in this manner supports the browser to render the web page faster. */
+header nav img { 
+  height:55px;
+}
+
+/* When the viewport is less than 768px in width, hide the anchor elements that span across the nav bar. */
+header nav a:not(:first-child) {
+  display: none;
+}
+
+/* Style all anchor elements in the nav bar. */
+header nav > a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+/* Position the drop down menu, which will only be visible when the viewport is less than 758px in width,
+to the right and set the display mode to inline so that it does not wrap on to a new line in the nav bar. */
+header nav .hamburger-icon {
+  float: right;
+  display: inline;
+  position: relative;
+  color:white;
+  font-size: 3em;
+  padding:0 0.2em;
+}
+
+/* Hide the ul contained within the dropdown menu by default and remove the default dot points added to each 
+list item by the browser. */
+.hamburger-icon ul {
+  display: none;;
+  list-style-type: none;
+  font-size: 1rem;
+  padding: 0.2em;
+}
+
+/* Display the ul in the dropdown menu when the dropdown menu is hovered over and add styling. */
+.hamburger-icon:hover ul {
+  display: block;
+  position: absolute;
+  top: 3.6em;
+  right: 0;
+  width: 60vw;
+  padding:0;
+  margin:0;
+  border: 2px solid rgb(114, 123, 121);
+  background-color: #DCDCDC;
+}
+
+/* Format the li elements contained within the dropdown menu when it is hovered hover. */
+.hamburger-icon:hover ul li {
+  display: block;
+  border:1px solid ;
+  padding: 0;
+  margin:0;
+  border: 1px solid rgb(105, 121, 121);
+}
+
+/* format the anchor tags contained within the dropdown menu when it is hovered over. */
+.hamburger-icon:hover ul li a {
+  color: black;
+  display: block;
+  padding: 1em 0.5em;
+  text-decoration: none;
+}
+
+/* Change the colour of all elements in the nav bar when they are hovered over. */
+header nav *:hover  {
+  background-color:#d2dcda;
+  color: black;
+}
+/* -- End of nav bar formatting -- */
+
+/* Prevent web page from being lower in height than the viewport, which would cause the footer to rise in the browser frame. */
+.wrapper {
+  min-height: 96vh; 
+}
+
+main {
+  /* Set minimum height of the main element to prevent reduction in height of the web page when viewport is reduced in size */
+  margin-bottom: 1em; /* Prevent footer from being too close to the main content. */
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  display: flex; /* Enables the align-self property to be set on child elements */
+  flex-direction: column;
+}
+
+.main-heading {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-heading > picture {
+  flex-shrink: 0; /* Prevent the logo from becoming smaller on small viewports */
+}
+
+/* Format all images contained within the main element and prevent them from scaling up beyond the original size of the
+image by setting max-width to 100% and height to auto. */
+main img { 
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 2em auto;
+}
+
+picture { 
+  /*Setting max-width to 100% ensures that images can scale down in size when the viewport is reduced in width but prevents
+  the images from scaling up in size:
+  https://www.w3schools.com/css/css_rwd_images.asp
+
+  This has been undertaken to ensure that the images do not scale up to a bad quality when the viewport width is increased.
+  */
+  max-width: 100%; 
+  height: auto;
+}
+
+/* Set the font-size of the h1, h2 and h3 headings.*/
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+/* Set headings to have the same foreground (text) colour. */
+h1, h2, h3, h4 {
+  color:#185068;
+  line-height: 1.2em;
+}
+
+code {
+  font-size: 1.1em;
+}
+
+/* Style visited hyperlinks in the main and footer elements to a specific colour. */
+main a:visited, footer a:visited {
+  color: rgb(130, 18, 87);
+}
+
+/* style the footer */
+footer {
+  font-size: 0.9em;
+  color:#2f3232;
+  background-color: #d2d3d2;
+  margin: 0;
+  padding: 1em 1em;
+}
+
+/* Add spacing in the form of padding to the footer's anchor tags. */
+footer nav a {
+  padding: 0.5em 1em 0.5em 0;
+}
+
+/* The below min-width values was referenced from the W3Schools website:
+https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+*/
+
+/* Form styling */
+
+form { 
+  min-width: 320px; /*Prevent the form's width from becoming too small, which could cause formatting issues. */
+  padding: 1em;
+  border-radius: 15px;
+  border: 2px solid rgb(187, 187, 187);
+}
+
+form h2 {
+  font-size: 1.7em;
+}
+
+form h3 {
+  font-size: 1.5em;
+}
+
+form h4 {
+  font-size: 1.3em;
+}
+
+
+.invisible, .dynamic.invisible, div.checkbox-container > .invisible:last-child { /*Selectors with higher specificity used to override other selectors for these target elements */
+  display: none; /*Hide elements that should not be visible to the user. The invisible class is toggled for particular elements using JavaScript to hide or display them. */
+}
+
+section.invisible, div.invisible {
+  display: none;
+}
+
+
+.form-section label > span, .required {
+  /* Style required input's labels to indicate to the user that information must be entered for these inputs. */
+  color: red; 
+}
+
+.form-section {
+  /* Flexbox has been used to style the the majority of the form due to its flexibility in layout adjustments. */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-section fieldset { /* Major form section containers */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 1.5em;
+  border-width: 0; /*Do not display the border of fieldset elements, in case a default border is displayed by the browser.*/
+}
+
+.std-label-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  width: 100%;
+}
+
+.radio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 95%;
+  font-size: 1.1em;
+}
+
+.radio-container div {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.5em;
+  font-weight: 300;
+}
+
+.radio-container > div:first-child{
+  font-weight: 600;
+  padding-top: 1em;
+}
+
+.radio-container div label {
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+}
+
+div.radio-container .radio-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.budget-heading {
+  font-size: 1.4em;
+  color: #185068;
+}
+
+input[type=radio] {
+  width: 1.5em;
+  flex: 0 0 auto;
+}
+
+/* Style the progress container that indicates to the user their progress in completing the form
+and the current section that they are viewing. */
+.progress-container {
+  font-size: 1em;
+  width: 95%;
+  margin-top: -1em;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  text-align: left;
+  color: #535353;
+  
+}
+
+.progress-container label {
+  display: flex;
+  width: 100%;
+  gap: 0.5em;
+  align-items: center;
+  font-weight: 300;
+  font-weight: bold;
+}
+
+progress {
+  width: 70%;
+}
+
+.section-number {
+  flex-shrink: 0;
+}
+
+input, select, textarea {
+  border: 2px solid rgba(226, 223, 223, 0.831);
+  border-radius: 7px;
+  max-width: 600px;
+  width: 70vw;
+  cursor: pointer;
+}
+
+input, label {
+  height: 2.2em;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+label[for=any-other-info] {
+  text-align: start;
+}
+
+select {
+  height: 2.2em;
+  text-align: center;
+  font-size: 1.1em; 
+}
+
+input[type=checkbox] {
+  height: 2em;
+  width: 2em;
+  
+}
+
+input[type=number] {
+  width: 15%;
+  height: 2em;
+  text-align: center;
+}
+
+input:focus, input:hover, label:hover + input, select:hover  {
+  /* Add a border color for inputs and labels when they are focused on or hovered over to 
+  assist the user in identifying inputs and their respective labels. */
+  border-color: rgb(13, 135, 235);
+}
+
+textarea {
+  height: 4em;
+}
+
+label {
+  font-weight:600 ;
+}
+
+/* Use a pointer cursor to indicate to the user that labels can be used to focus on inputs or toggle checkboxes. */
+label:hover {
+  cursor: pointer;
+}
+
+label[for=num-children], label[for=contact-number] {
+  margin-bottom: 0.5em;
+}
+
+/* Lay out the form buttons using flexbox. */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+/* Style the back, next and submit buttons. */
+button {
+  height: 2.5em;
+  width:6em;
+  border-radius: 12px;
+  background-color: #7097c7;
+  color: rgb(255, 255, 255);
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.checkbox-container, .checkbox-list .checkbox-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.checkbox-container label {
+ display: flex;
+ align-items: center;
+}
+
+fieldset.checkbox-selection-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2em;
+}
+
+input[name=num-children] {
+  align-self: center;
+}
+
+.dynamic {
+  width: 100%; /*Ensures appropriate formatting of dynamically created elements */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+.dynamic .checkbox-container label {
+  font-weight: 300;
+}
+
+/* Bold this text to indicate to the user that a selection needs to be made. */
+.gender-wrapper > div:first-child {
+  font-weight: bold;
+  width: 50%;
+}
+
+/* Selectors to format the country list and selected countries */
+.interactive-select-list > li, .select-list-l2-headings {
+  list-style-type: none;
+}
+
+.interactive-select-list > li h3:after, .interactive-select-list h4:after {
+  /* Use the below symbol to indicate the presence of a dropdown list. */
+  content: ' ▼';
+  font-size: 0.7em;
+}
+
+/* Remove default bullet points for the below selected elements */
+.interactive-select-list li:empty {
+  list-style-type: none;
+}
+
+/* Indicate that all selected elements are interactive. */
+.interactive-select-list * {
+  cursor: pointer;
+}
+
+/* Ensure that these li items are of sufficient height so that the user does not
+accidentally select the wrong item. */
+.select-leaf-list li {
+  height: 2em
+}
+
+/* Add a background colour to hovered leaf-level li items to aid user navigation and selection. */
+.select-leaf-list > li:hover {
+background-color: #d2d3d2;
+}
+
+.select-leaf-list {
+  font-size: 1.2em;
+}
+
+/* Indicate to the user that a selection has been made. */
+.selected-item {
+  background-color: rgb(225, 234, 236);
+}
+
+/* Add a tick symbol to further indicate to the user that a selection has been made. */
+.selected-item:after {
+  content: ' ✓';
+  font-size: 1.3em;
+  color:rgb(34, 117, 185)
+}
+
+/* Form validation selectors */
+
+/* The below class is added to any elements that fail client-side input validation, to notify
+the user that their input information needs to be corrected before proceeding to the next
+section of the form. */
+.invalid {
+  border-color: red;
+}
+
+/* Dynamically added error messages are styled using the below selected class to draw the user's attention
+to the invalid fields. */
+.error-message {
+  color: red;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+/* Apply the below styling to medium sized screens, such as tablets in landscape mode and larger, through a media query. */
+@media only screen and (min-width: 768px) {
+
+  /* Display the anchor elements that were set to display: none with inline flow once the minimum width of the 
+  viewport is 768px. */
+  .home, header nav a:not(:first-child) {
+    display: inline;
+    float: left;
+    vertical-align: middle;
+  }
+
+  /* Add padding to all elements in the header's navigation bar except the first, in order to adequately space
+  the nav bar hyperlinks. */
+  header nav a:not(:first-child) {
+  padding: 1.32em 0.5em;
+  }
+
+  /* The nav contains floated elements. The below styling therefore needs to be applied to ensure that the nav bar's
+  height includes the height of these floated elements, otherwise the nav bar reduces to have minimal height. */
+  header nav:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Change the padding applied to the nav bar's logo for larger screen sizes. */
+  header nav img {
+    padding: 0.1em 1em;
+  }
+
+  /* Hide the nav bar's dropdown menu on larger devices because the nav bar's set of anchor tags that are hidden for smaller viewports are
+  displayed once the minimum viewport width is 768px. This is necessary to prevent two sets of identical links in the header's nav bar. */
+  header nav .hamburger-icon {
+    display: none;
+  }
+
+  /* Form formatting for larger viewports */
+  main {
+    align-items: center;
+    padding: 0 1.5em;
+  }
+
+  form {
+    max-width: 1200px;
+  }
+
+  div.std-label-input {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .std-label-input label {
+    display: flex;
+    align-items: center;
+  }
+
+  div.checkbox-container {
+    flex-direction: row;
+    flex-flow: wrap;
+  }
+
+  .checkbox-selection-list p {
+    width: 100%;
+  }
+
+  .checkbox-selection-list .checkbox-container {
+    flex-direction: row;
+    width: 40%;
+  }
+
+  div.dynamic {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .dynamic p {
+    width: 100%;
+  }
+
+  form input, form select, form textarea {
+    width: 15em;
+  }
+
+  form select {
+    width: 18em;
+  }
+
+  input[type=date] {
+    /* As flex-flow: wrap has been used on the parent container for these date inputs, this will cause the date fields
+    to wrap onto a new line. This improves the appearance of the two-column layout for large viewports. */
+    width: 18em;
+  }
+
+  .form-section fieldset {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    gap: 1em;
+  }
+
+  .form-section fieldset .two-col {
+    width: 40%;
+    /* Setting the flex-flow property to a value of wrap ensures that flex items are moved to a new row when the row is full.
+    This aids with formatting, particularly when error messages are dynamically added for inputs that have failed input
+    validation and require correction. */
+    flex-flow: wrap; 
+  }
+
+  .form-section fieldset .two-col label {
+    flex: 0 0 auto;
+  }
+
+  fieldset h3 {
+    width: 100%;
+  }
+
+  div.separate-rows {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  div.separate-rows textarea {
+    width: 80%;
+    height: 7em;
+  }
+}
+
+/* The below media query applies its styling when the user attempts to print the web page and containing form. */
+@media print {
+  /* To prevent printer ink toner wastage, set the background colour of the document to white and the font-colour of all text to black. */
+  body {
+    color: black;
+    background-color: white;
+  }
+
+  /*Remove all images to reduce ink toner wastage (no images are necessary for printing on this website). */
+  nav, img, picture { 
+    display:none;
+  }
+
+  /*Remove the minimum height of the wrapper div so that the footer does not get printed on an additional page when the web page's content
+  does not span an entire page. */
+  div.wrapper { 
+    min-height: 0;
+  }
+}

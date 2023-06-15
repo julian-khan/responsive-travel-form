@@ -1,0 +1,933 @@
+<!DOCTYPE html> <!--This syntax specifies that this file is an HTML5 document. -->
+<!-- Specify that the language of this HTML document is English. -->
+<html lang="en">
+
+<!-- The header tag contains meta data that can assist search engine crawlers with indexing the web page and HTML
+parsers with parsing the document. -->
+
+<head>
+  <meta charset="UTF-8"> <!--Specify that the character encoding of this document is UTF-8-->
+  <!-- The below meta tags respectively provide meta data relating to the document's author and keywords relevant to the document. -->
+  <meta name="author" content="Julian Khan">
+  <meta name="keywords" content="scenic adventures, travel, travel registration form">
+  <!-- setting the viewport to width=device-width ensures that the viewport will be the dimensions of the
+  client device's screen-width. The initial-scale to 1 sets the initial zoom level to 1 (no zoom).
+  These actions are necessary for responsive design of the web page, as explained in the below link:
+  https://www.w3schools.com/css/css_rwd_viewport.asp
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The below link tag imports the site's CSS style sheet so that styling can be applied to the HTML elements. -->
+  <link rel="stylesheet" title="site style" href="styles.css">
+  <!-- Set the title of the web page, which is visible in the browser frame and in search engine results. -->
+  <title>Global Travel Adventures form</title>
+  <script src="dynamic-form-sections.js"></script>
+</head>
+
+<!-- The body element contains the majority of the document's content. -->
+
+<body>
+  <!-- The below div wraps all content in the body element except for the footer. This div is then targeted 
+  using a CSS selector to ensure that the minimum height of this content is always a particular size,
+  to prevent the web page height from being less than the browser window when there is not a large amount
+  of content on the page. -->
+  <div class="wrapper">
+    <!-- The header element contains the site's navigation bar. The link to the current page performs no action when clicked
+    because its href attribute has been set to javascript:void(0);, which causes the anchor tag, when clicked, to execute
+    JavaScript code that returns undefined. -->
+    <header>
+      <!-- The picture element uses a media query to render a larger version of the image when the client device's screen
+      width is at least 768 pixels wide. If the screen is less than this width, the default smaller image contained in the 
+      img tag is rendered.
+  
+      The picture element therefore provides responsive design for image rendering, based on the user's screen size. -->
+      <picture> <!-- Header image from: https://pixabay.com/photos/maldives-palm-tree-hammock-beach-3220702/ -->
+        <source srcset="media/header-larger.jpg" media="(min-width: 768px)">
+        <img src="media/header-smaller.jpg" alt="Website header image that displays a beach.">
+      </picture>
+      <nav>
+        <a href="javascript:void(0);" class="home" title="Logo and home page link">
+          <picture>
+            <source srcset="media/Logo-larger.svg" media="(min-width: 768px)"> <!--Logo SVG file resized, directly in the .SVG files by adjusting width and height attributes.-->
+            <img src="media/Logo-smaller.svg" alt="Company logo">
+          </picture>
+        </a>
+        <!-- Title attributes have been added to all anchor tags on the website to enhance accessability. -->
+        <a href="javascript:void(0);" title="Home link">Home</a>
+        <a href="javascript:void(0);" title="Page one link">Page one</a>
+        <a href="javascript:void(0);" title="Page two link">Page two</a>
+        <a href="javascript:void(0);" title="Page three link">Page three</a>
+        <div class="hamburger-icon"><span>&#9776;</span> <!--This div contains the dropdown navigation menu which is 
+        only displayed when the user's screen width is less than 768px (refer to the stylesheet). -->
+          <ul> <!--Example internal hyperlinks to primary web pages of the site.-->
+            <li><a href="javascript:void(0);" title="Generic page one link">Page one</a></li>
+            <li><a href="javascript:void(0);" title="Generic page two link">Page two</a></li>
+            <li><a href="javascript:void(0);" title="Generic page three link">Page three</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- The main element contains the document's primary content, as suggested by the W3 HTML specification. -->
+    <main>
+        <div class="main-heading">
+          <!--The primary heading of the web page is set using the h1 tag. -->
+          <h1>Scenic Adventures Travel Form</h1>
+          <picture>
+            <source srcset="media/Logo-larger.svg" media="(min-width: 768px)"> <!--Logo SVG file resized, directly in the .SVG files by adjusting width and height attributes.-->
+            <img src="media/Logo-smaller.svg" alt="Company logo">
+          </picture>
+        </div>
+
+        <section>
+        <h2>Travel Registration Form</h2>
+        <p>Welcome to Scenic Adventure's travel form. Completing this form will assist us in personalising your travel
+          experience, to make it as enjoyable and memorable as possible.
+        </p>
+          <form action="https://tau.usq.edu.au/courses/CSC8740/reflect.php" method="post">
+
+            <!--A generic template to be used for dynamically creating partner, friend and child components that will be
+            dynamically inserted into the document tree.-->
+            <template class="partner-and-friends-template">
+              <section>
+                <h2></h2>
+              </section>
+            </template>
+
+            <section class="section-1 form-section">
+              <!--The below div container contains the progress element, which is dynamically updated through
+              JavaScript. This progress element notifies the user of their progress through the form, based
+            on the number of successfully validated sections.-->
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <!--The below div container's span element is dynamically updated by JavaScript to inform the
+                user of the current form section that they are viewing.-->
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>General information</h2>
+              <p>Please add the required information below. Once complete, click 'Next' to move to the next section of the form. </p>
+
+              <h3>Traveling companions</h3>
+              <!--Fieldset tags have been used to group input tags that provide related information.-->
+              <fieldset>
+                <!--Simple input elements with type 'checkbox' have been used in this form for
+                binary selections.-->
+                <div class="checkbox-container">
+                  <label for="with-partner">Are you traveling with a partner?</label>
+                  <input type="checkbox" id="with-partner" name="with-partner">
+                </div>
+                <div class="std-label-input">
+                  <label for="num-children">The number of children that you will travel with: </label>
+                  <input type="number" id="num-children" name="num-children" min="0" max="10" step="1" value="0">
+                </div>
+                <div class="checkbox-container">
+                      <label for="with-friends">Are you traveling with friends?</label>
+                      <input type="checkbox" id="with-friends" name="with-friends">                  
+                </div>
+              </fieldset>
+
+                <h3>About you</h3>
+                <div class="personal-info-template">
+                  <fieldset>
+                    <!--The two-col class is used to render the containing elements in a two-column format on
+                    larger viewports such as laptops and computer monitors.-->
+                    <div class="std-label-input two-col">
+                      <label for="first-name">First name<span>*</span></label>
+                      <!--The placeholder attribute has been provided with a value for supported input elements
+                      to aid the user in understanding the required type of information to input.-->
+                      <input type="text" id="first-name" name="first-name" placeholder="John" required>
+                    </div>
+                    <div class="std-label-input two-col">
+                      <label for="last-name">Last name<span>*</span></label>
+                      <input type="text" id="last-name" name="last-name" placeholder="Smith" required>
+                    </div>
+                    <div class="std-label-input two-col">
+                      <label for="birth-date">Birthday<span>*</span></label>
+                      <!--max attribute specified for the below input to ensure that the user is a minimum age.-->
+                      <input type="date" id="birth-date" name="birth-date" min="1910-01-01" max="2007-01-01" required>
+                    </div>
+                    <div class="email-wrapper std-label-input two-col">
+                      <label for="email">Email<span>*</span></label>
+                      <input type="email" id="email" name="email" placeholder = "name@email.com" required>
+                    </div>
+                    <div class="contact-wrapper std-label-input two-col">
+                      <label for="contact-number">Contact number<span>*</span></label>
+                      <input type="tel" id="contact-number" name="contact-number" placeholder="04XXXXXXXX or 9XXXXXXX" required>
+                    </div>
+                    <!-- Occupation list text from https://gist.github.com/ag14spirit/fbf877576c9d6b78899e3ad02fe92b50 (the code example was not used) -->
+                    <div class="occupation-wrapper std-label-input two-col">
+                      <label for="occupation">Occupation</label>
+                      <select id="occupation" name="occupation">
+                        <option value="">--Please select an option</option>
+                        <!--optgroup tags have been used to group related options.-->
+                        <optgroup label="Medical and allied health occupations">
+                          <option value="health-1">Chiropractor</option>
+                          <option value="health-2">Dentist</option>
+                          <option value="health-3">Dietitian or Nutritionist</option>
+                          <option value="health-4">Nursing, Psychiatric, or Home Health Aide</option>
+                          <option value="health-5">Occupational and Physical Therapist Assistant or Aide</option>
+                          <option value="health-6">Optometrist</option>
+                          <option value="health-7">Pharmacist</option>
+                          <option value="health-8">Physician</option>
+                          <option value="health-9">Physician Assistant</option>
+                          <option value="health-10">Podiatrist</option>
+                          <option value="health-11">Registered Nurse</option>
+                          <option value="health-12">Therapist</option>
+                          <option value="health-13">Veterinarian</option>
+                          <option value="health-14">Health Technologist or Technician</option>
+                          <option value="health-15">Other Healthcare Practitioners and Technical Occupation</option>
+                        </optgroup>
+                        <optgroup label="Business, Executive, Management, and Financial Occupations:">
+                          <option value="business-1">Chief Executive</option>
+                          <option value="business-2">General and Operations Manager</option>
+                          <option value="business-3">Advertising, Marketing, Promotions, Public Relations, and Sales Manager</option>
+                          <option value="business-4">Operations Specialties Manager (e.g., IT or HR Manager)</option>
+                          <option value="business-5">Construction Manager</option>
+                          <option value="business-6">Engineering Manager</option>
+                          <option value="business-7">Accountant, Auditor</option>
+                          <option value="business-8">Business Operations or Financial Specialist</option>
+                          <option value="business-9">Business Owner</option>
+                          <option value="business-10">Other Business, Executive, Management, Financial Occupation</option>
+                        </optgroup>
+                        <optgroup label="Architecture and Engineering Occupations:">
+                          <option value="technical-1">Architect, Surveyor, or Cartographer</option>
+                          <option value="technical-2">Engineer</option>
+                          <option value="technical-3">Other Architecture and Engineering Occupation</option>
+                        </optgroup>
+                        <optgroup label="Education and Training occupations:">
+                          <option value="education-1">Lecturer</option>
+                          <option value="education-2">Primary, Secondary, or Special Education School Teacher</option>
+                          <option value="education-3">Other Teacher or Instructor</option>
+                          <option value="education-4">Other Education, Training, and Library Occupation</option>
+                        </optgroup>
+                        <optgroup label="Other professions:">
+                          <option value="other-prof-1">Arts, Design, Entertainment, Sports, and Media Occupations</option>
+                          <option value="other-prof-2">Computer Specialist, Mathematical Science</option>
+                          <option value="other-prof-3">Counselor, Social Worker, or Other Community and Social Service Specialist</option>
+                          <option value="other-prof-4">Lawyer, Judge</option>
+                          <option value="other-prof-5">Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)</option>
+                          <option value="other-prof-6">Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)</option>
+                          <option value="other-prof-7">Religious Worker (e.g., Clergy, Director of Religious Activities or Education)</option>
+                          <option value="other-prof-8">Social Scientist and Related Worker</option>
+                          <option value="other-prof-9">Other Professional Occupation</option>
+                        </optgroup>
+                        <optgroup label="Administrative occupations:">
+                          <option value="administrative-1">Supervisor of Administrative Support Workers</option>
+                          <option value="administrative-2">Financial Clerk</option>
+                          <option value="administrative-3">Secretary or Administrative Assistant</option>
+                          <option value="administrative-4">Material Recording, Scheduling, and Dispatching Worker</option>
+                          <option value="administrative-5">Other Office and Administrative Support Occupation</option>
+                        </optgroup>
+                        <optgroup label="Service occupations:">
+                          <option value="service-1">Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)</option>
+                          <option value="service-2">Chef or Head Cook</option>
+                          <option value="service-3">Cook or Food Preparation Worker</option>
+                          <option value="service-4">Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)</option>
+                          <option value="service-5">Building and Grounds Cleaning and Maintenance</option>
+                          <option value="service-6">Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)</option>
+                          <option value="service-7">Sales Supervisor, Retail Sales</option>
+                          <option value="service-8">Retail Sales Worker</option>
+                          <option value="service-9">Insurance Sales Agent</option>
+                          <option value="service-10">Sales Representative</option>
+                          <option value="service-11">Real Estate Sales Agent</option>
+                          <option value="service-12">Other Services Occupation</option>
+                        </optgroup>
+                        <optgroup label="Agriculture, Maintenance, Repair, and Skilled Crafts Occupations:">
+                          <option value="trade-1">Construction and Extraction (e.g., Construction Laborer, Electrician)</option>
+                          <option value="trade-2">Farming, Fishing, and Forestry</option>
+                          <option value="trade-3">Installation, Maintenance, and Repair</option>
+                          <option value="trade-4">Production Occupations</option>
+                          <option value="trade-5">Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation</option>
+                        </optgroup>
+                        <optgroup label="Transportation Occupations:">
+                          <option value="transport-1">Aircraft Pilot or Flight Engineer</option>
+                          <option value="transport-2">Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)</option>
+                          <option value="transport-3">Other Transportation Occupation</option>
+                        </optgroup>
+                        <optgroup label="Other Occupations:">
+                          <option value="other-1">Military</option>
+                          <option value="other-2">Homemaker</option>
+                          <option value="other-3">Any other occupation</option>
+                          <option value="other-4">Don't Know</option>
+                          <option value="other-5">Not Applicable</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div class="gender-wrapper radio-container"><div>Gender<span class="required">*</span></div>
+                    <div class="radio-list">
+                      <div>
+                        <input type="radio" id="male" name="gender" value="male" required>
+                        <label for="male">Male</label>
+                      </div>
+                        <div>
+                          <input type="radio" id="female" name="gender" value="female">
+                          <label for="female">Female</label>
+                        </div>
+                        <div>
+                          <input type="radio" id="other" name="gender" value="other">
+                          <label for="other">Other</label>
+                        </div>
+                        <div>
+                          <input type="radio" id="none" name="gender" value="none">
+                          <label for="none">Decline to answer</label>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="checkbox-container">
+                      <label for="dietary-requirements">Do you have any dietary requirements?</label>
+                      <!--If the user checks the below input of type checkbox, a form component is dynamically created through
+                      JavaScript that enables the user to specify their specific dietary requirements.-->
+                      <input type="checkbox" id="dietary-requirements" name="dietary-requirements">
+                    </div>
+                    <div class="checkbox-container">
+                      <label for="inclusive-needs">Do you have any physical mobility needs?</label>
+                      <input type="checkbox" id="inclusive-needs" name="inclusive-needs">
+                    </div>
+                  </fieldset>
+                </div>
+                  <div class="button-container">
+                    <div></div>
+                    <!--Back and next buttons enable the user to dynamically navigate sections of the form.-->
+                    <button type="button" class="next">Next</button>
+                  </div>
+            </section>
+
+            <!--This is the container into which all partner, child and friend components are dynamically added.-->
+            <div id='inserted-partner-child-friends' class="form-section invisible">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <div class="button-container partner-child-friends-button-container">
+                <button type="button" class="prev">Previous</button>
+                <button type="button" class="next">Next</button>
+              </div>
+            </div> 
+
+            <section class="section-4 form-section"> 
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>About your travel</h2>
+              <fieldset>
+                <h3>Travel dates (approximate dates are okay)</h3>
+                <div class="std-label-input two-col">
+                  <label for="travel-start-date">Preferred travel start date<span>*</span></label>
+                  <input type="date" id="travel-start-date" name="travel-start-date" max="2028-01-01" required> 
+                </div>
+                <div class="std-label-input two-col">
+                  <label for="travel-end-date">Preferred travel end date<span>*</span></label>
+                  <input type="date" id="travel-end-date" name="travel-end-date" max="2028-01-01" required> 
+                </div>
+
+                <div class="radio-container">
+                  <div class="budget-heading">Budget<span class="required">*</span></div>
+                  <div class="radio-list">
+                    <div>
+                      <input type="radio" id="budget-0-600" name="budget" value="budget-0-600" required>
+                      <label for="budget-0-600">$600 or less</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="budget-600-1500" name="budget" value="budget-600-1500">
+                      <label for="budget-600-1500">$601-$1500</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="budget-1500-3000" name="budget" value="budget-1500-3000">
+                      <label for="budget-1500-3000">$1501-$3000</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="budget-3000-5000" name="budget" value="budget-3000-5000">
+                      <label for="budget-3000-5000">$3001-$5000</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="budget-high" name="budget" value="budget-high">
+                      <label for="budget-high">More than $5000</label>
+                    </div>
+                  </div>
+                </div>
+
+                <h3>Activities</h3> <!-- No inputs in this part of the form are mandatory.-->
+                  <label for="activity-level">How active would you like to be on your holiday?</label>
+                  <select id="activity-level" name="activity-level">
+                    <option value="">--Please select an option</option>
+                      <option value="very-active">Very active (plenty of intense physical activity on most days)</option>
+                      <option value="moderately-active">Moderately active (walking or other moderate exercise on some days)</option>
+                      <option value="lightly-active">Lightly active (less walking or physical activity)</option>
+                      <option value="sedentary">As little physical activity as possible</option>
+                  </select>
+                
+                <div class="radio-container">
+                  <div>Number of destinations</div>
+                  <div class="radio-list">
+                    <div>
+                      <!--name and value attributes have been provided with logical values so that server-side scripts can
+                      easily parse the submitted information.-->
+                      <input type="radio" id="destination-1" name="destination-count" value="destination-1">
+                      <label for="destination-1">One destination</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="destination-few" name="destination-count" value="destination-few">
+                      <label for="destination-few">Two or three destinations</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="destination-many" name="destination-count" value="destination-many">
+                      <label for="destination-many">Many destinations</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="destination-undecided" name="destination-count" value="destination-undecided">
+                      <label for="destination-undecided">Not sure</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="checkbox-container">
+                  <label for="needs-rest-days">Do you require rest days during your trip?</label>
+                  <input type="checkbox" id="needs-rest-days" name="needs-rest-days">
+                </div>
+                <div class="std-label-input">
+                  <label for="preferred-activities">Specific activities of interest
+                  </label>
+                  <input type="text" list="activities" id="preferred-activities" name="preferred-activities">
+                  <datalist id="activities">
+                    <option value="Hiking"></option>
+                    <option value="Shopping"></option>
+                    <option value="Relaxing"></option>
+                    <option value="Skiing or snowboarding"></option>
+                    <option value="Sightseeing"></option>
+                  </datalist>
+                </div>
+              </fieldset>
+              <div class="button-container">
+                <button type="button" class="prev">Previous</button>
+                <button type="button" class="next">Next</button>
+              </div>
+            </section>
+
+            <section class="section-5 form-section">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>Accommodation</h2>
+              <div>Please select your preferred accommodation type(s)</div>
+              <fieldset class="checkbox-selection-list">
+                <div class="checkbox-container two-col">
+                  <label for="hotel">Hotel</label>
+                  <input type="checkbox" id="hotel" name="preferred-accom-hotel" value="hotel">
+                </div>
+                
+                <div class="checkbox-container two-col">
+                  <label for="motel">Motel</label>
+                  <input type="checkbox" id="motel" name="preferred-accom-motel" value="motel">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="bed-breakfast">Bed and breakfast</label>
+                  <input type="checkbox" id="bed-breakfast" name="preferred-accom-bed-breakfast" value="bed-breakfast">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="airbnb">AirBnB</label>
+                  <input type="checkbox" id="airbnb" name="preferred-accom-airbnb" value="airbnb">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="student-accom">Student accommodation</label>
+                  <input type="checkbox" id="student-accom" name="preferred-accom-student" value="student-accom">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="backpacker-accom">Backpacker's accommodation</label>
+                  <input type="checkbox" id="backpacker-accom" name="preferred-accom-backpacker" value="backpacker-accom">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="camping">Camping</label>
+                  <input type="checkbox" id="camping" name="preferred-accom-camping" value="camping">
+                </div>
+                <div class="checkbox-container two-col">
+                  <label for="other-accom">Other accomodation</label>
+                  <input type="checkbox" id="other-accom" name="preferred-accom-other" value="other-accom">
+                </div>
+              </fieldset>
+              <div class="button-container">
+                <button type="button" class="prev">Previous</button>
+                <button type="button" class="next">Next</button>
+              </div>
+            </section>
+
+            <section class="section-6 form-section">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>Preferred modes of travel</h2>
+                <div>Please select your preferred mode(s) of travel</div>
+                <fieldset class="checkbox-selection-list">
+                  <div class="checkbox-container two-col">
+                    <label for="air">Air</label>
+                    <input type="checkbox" id="air" name="travel-mode-air" value="air">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="boat">Boat</label>
+                    <input type="checkbox" id="boat" name="travel-mode-boat" value="boat">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="train">Train</label>
+                    <input type="checkbox" id="train" name="travel-mode-train" value="train">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="bus">Bus</label>
+                    <input type="checkbox" id="bus" name="travel-mode-bus" value="bus">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="car">Car</label>
+                    <input type="checkbox" id="car" name="travel-mode-car" value="car">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="bicycle">Bicycle</label>
+                    <input type="checkbox" id="bicycle" name="travel-mode-bicycle" value="bicycle">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="walking">Walking</label>
+                    <input type="checkbox" id="walking" name="travel-mode-walking" value="walking">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="horse">Horse</label>
+                    <input type="checkbox" id="horse" name="travel-mode-horse" value="horse">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="other-travel-mode">Other</label>
+                    <input type="checkbox" id="other-travel-mode" name="travel-mode-other" value="other">
+                  </div>
+                </fieldset>
+                <div class="button-container">
+                  <button type="button" class="prev">Previous</button>
+                  <button type="button" class="next">Next</button>
+                </div>
+              </section>
+
+            <section class="section-7 form-section">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>Preferred travel environment</h2>
+                <div>Please select your preferred travel environment(s)</div>
+                <fieldset class="checkbox-selection-list">
+                  <div class="checkbox-container two-col">
+                    <label for="cities">Cities</label>
+                    <input type="checkbox" id="cities" name="travel-environment-cities" value="cities">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="rural">Rural</label>
+                    <input type="checkbox" id="rural" name="travel-environment-rural" value="rural">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="mountains">Mountains</label>
+                    <input type="checkbox" id="mountains" name="travel-environment-mountains" value="mountains">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="deserts">Deserts</label>
+                    <input type="checkbox" id="deserts" name="travel-environment-deserts" value="deserts">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="rain-forests">Rain forests</label>
+                    <input type="checkbox" id="rain-forests" name="travel-environment-rain-forest" value="rain-forests">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="sea">Coastal or sea</label>
+                    <input type="checkbox" id="sea" name="travel-environment-sea" value="sea">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="inland">Inland</label>
+                    <input type="checkbox" id="inland" name="travel-environment-inland" value="inland">
+                  </div>
+                  <div class="checkbox-container two-col">
+                    <label for="travel-env-other">Other</label>
+                    <input type="checkbox" id="travel-env-other" name="travel-environment-other" value="other">
+                  </div>
+                </fieldset>
+                <div class="button-container">
+                  <button type="button" class="prev">Previous</button>
+                  <button type="button" class="next">Next</button>
+                </div>           
+              </section>
+
+            <section class="section-8 countries-selection-section form-section">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>Preferred destination(s)</h2>
+                <div>Please select your preferred destination(s)<span class="required">*</span></div>
+                <!-- Country list text from https://www.internetworldstats.com/list1.htm -->
+                  <ul class="interactive-select-list">
+                    <!--When the user clicks on list items in this ul that do not have element children, these selections are dynamically added to a hidden
+                    input element in this section of the form.-->
+                    <li>
+                      <h3>Africa</h3>
+                      <ul class="select-list-l2-headings">
+                        <li><h4>Eastern</h4>
+                          <ul class="country-list select-leaf-list">
+                            <li>Burundi</li>
+                            <li>Comoros</li>
+                            <li>Djibouti</li>
+                            <li>Eritrea</li>
+                            <li>Ethiopia</li>
+                            <li>Kenya</li>
+                            <li>Madagascar</li>
+                            <li>Malawi</li>
+                            <li>Mauritius</li>
+                            <li>Mayotte</li>
+                            <li>Mozambique</li>
+                            <li>Reunion</li>
+                            <li>Rwanda</li>
+                            <li>Seychelles</li>
+                            <li>Somalia</li>
+                            <li>Tanzania, United Republic of</li>
+                            <li>Uganda</li>
+                            <li>Zambia</li>
+                            <li>Zimbabwe</li>
+                          </ul>
+                        </li>
+                        <li><h4>Central</h4>
+                          <ul class="select-leaf-list">
+                            <li>Angola</li>
+                            <li>Cameroon</li>
+                            <li>Central African Republic</li>
+                            <li>Chad</li>
+                            <li>Congo (Brazzaville)</li>
+                            <li>Congo, Democratic Republic of the</li>
+                            <li>Equatorial Guinea</li>
+                            <li>Gabon</li>
+                            <li>Sao Tome and Principe</li>
+                          </ul>
+                        </li>
+                        <li>
+                          <h4>Northern</h4>
+                          <ul class="select-leaf-list">
+                            <li>Algeria</li>
+                            <li>Egypt</li>
+                            <li>Libyan Arab Jamahiriya</li>
+                            <li>Morroco</li>
+                            <li>South Sudan</li>
+                            <li>Sudan</li>
+                            <li>Tunisia</li>
+                            <li>Western Sahara</li>
+                          </ul>
+                      </li>
+                      <li>
+                        <h4>Western</h4>
+                        <ul class="select-leaf-list">
+                          <li>Benin</li>
+                          <li>Burkina Faso</li>
+                          <li>Cape Verde</li>
+                          <li>Cote d'Ivoire (Ivory Coast)</li>
+                          <li>Gambia</li>
+                          <li>Ghana</li>
+                          <li>Guinea</li>
+                          <li>Guinea-Bissau</li>
+                          <li>Liberia</li>
+                          <li>Mali</li>
+                          <li>Mauritania</li>
+                          <li>Niger</li>
+                          <li>Nigeria</li>
+                          <li>Saint Helena</li>
+                          <li>Senegal</li>
+                          <li>Sierra Leone</li>
+                          <li>Togo</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <h4>Southern</h4>
+                        <ul class="select-leaf-list">
+                          <li>Botswana</li>
+                          <li>Eswatini</li>
+                          <li>Lesotho</li>
+                          <li>Namibia</li>
+                          <li>South Africa</li>
+                        </ul>
+                      </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>Asia</h3>
+                      <ul class="select-leaf-list">
+                        <li>Afghanistan</li>
+                        <li>Armenia</li>
+                        <li>Azerbaijan</li>
+                        <li>Bangladesh</li>
+                        <li>Bhutan</li>
+                        <li>Brunei Darussalam</li>
+                        <li>Cambodia</li>
+                        <li>China</li>
+                        <li>Georgia</li>
+                        <li>Hong Kong</li>
+                        <li>India</li>
+                        <li>Indonesia</li>
+                        <li>Japan</li>
+                        <li>Kazakhstan</li>
+                        <li>Korea, North</li>
+                        <li>Korea, South</li>
+                        <li>Kyrgyzstan</li>
+                        <li>Laos</li>
+                        <li>Macao</li>
+                        <li>Malaysia</li>
+                        <li>Maldives</li>
+                        <li>Mongolia</li>
+                        <li>Myanmar</li>
+                        <li>Nepal</li>
+                        <li>Pakistan</li>
+                        <li>Philippines</li>
+                        <li>Singapore</li>
+                        <li>Sri Lanka</li>
+                        <li>Taiwan</li>
+                        <li>Tajikistan</li>
+                        <li>Thailand</li>
+                        <li>Timor Leste</li>
+                        <li>Turkmenistan</li>
+                        <li>Uzbekistan</li>
+                        <li>Vietnam</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>Central America</h3>
+                      <ul class="select-leaf-list">
+                        <li>Belize</li>
+                        <li>Costa Rica</li>
+                        <li>El Salvador</li>
+                        <li>Guatemala</li>
+                        <li>Honduras</li>
+                        <li>Mexico</li>
+                        <li>Nicaragua</li>
+                        <li>Panama</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>Europe</h3>
+                      <ul class="select-leaf-list">
+                        <li>Albania</li>
+                        <li>Andorra</li>
+                        <li>Belarus</li>
+                        <li>Bosnia</li>
+                        <li>Croatia</li>
+                        <li>European Union</li>
+                        <li>Faroe Islands</li>
+                        <li>Gibraltar</li>
+                        <li>Guernsey and Alderney</li>
+                        <li>Iceland</li>
+                        <li>Isle of Man</li>
+                        <li>Jersey</li>
+                        <li>Kosovo</li>
+                        <li>Liechtenstein</li>
+                        <li>Moldova</li>
+                        <li>Monaco</li>
+                        <li>Montenegro</li>
+                        <li>North Macedonia</li>
+                        <li>Norway</li>
+                        <li>Russia</li>
+                        <li>San Marino</li>
+                        <li>Serbia</li>
+                        <li>Svalbard and Jan Mayen Islands</li>
+                        <li>Switzerland</li>
+                        <li>Turkey</li>
+                        <li>Ukraine</li>
+                        <li>United Kingdom</li>
+                        <li>Vatican City State (Holy See)</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>European Union</h3>
+                      <ul class="select-leaf-list">
+                        <li>Austria</li>
+                        <li>Belgium</li>
+                        <li>Bulgaria</li>
+                        <li>Cyprus</li>
+                        <li>Czech Republic</li>
+                        <li>Denmark</li>
+                        <li>Estonia</li>
+                        <li>Finland</li>
+                        <li>France</li>
+                        <li>Germany</li>
+                        <li>Greece</li>
+                        <li>Hungary</li>
+                        <li>Ireland</li>
+                        <li>Italy</li>
+                        <li>Latvia</li>
+                        <li>Lithuania</li>
+                        <li>Luxembourg</li>
+                        <li>Malta</li>
+                        <li>Netherlands</li>
+                        <li>Poland</li>
+                        <li>Portugal</li>
+                        <li>Romania</li>
+                        <li>Slovakia</li>
+                        <li>Slovenia</li>
+                        <li>Spain</li>
+                        <li>Sweden</li>                     
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>Middle East</h3>
+                      <ul class="select-leaf-list">
+                        <li>Bahrain</li>
+                        <li>Iraq</li>
+                        <li>Iran</li>
+                        <li>Israel</li>
+                        <li>Jordan</li>
+                        <li>Kuwait</li>
+                        <li>Lebanon</li>
+                        <li>Oman</li>
+                        <li>Palestine</li>
+                        <li>Qatar</li>
+                        <li>Saudi Arabia</li>
+                        <li>Syria</li>
+                        <li>United Arab Emirates</li>
+                        <li>Yemen</li>                        
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>North America</h3>
+                      <ul class="select-leaf-list">
+                        <li>Bermuda</li>
+                        <li>Canada</li>
+                        <li>Greenland</li>
+                        <li>Saint Pierre and Miquelon</li>
+                        <li>United States</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>Oceania</h3>
+                      <ul class="select-leaf-list">
+                        <li>Australia</li>
+                        <li>Fiji</li>
+                        <li>French Polynesia</li>
+                        <li>Guam</li>
+                        <li>Kiribati</li>
+                        <li>Marshall Islands</li>
+                        <li>Micronesia</li>
+                        <li>New Caledonia</li>
+                        <li>New Zealand</li>
+                        <li>Papua New Guinea</li>
+                        <li>Samoa</li>
+                        <li>Samoa, American</li>
+                        <li>Solomon Islands</li>
+                        <li>Tonga</li>
+                        <li>Vanuatu</li>                      
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>South America</h3>
+                      <ul class="select-leaf-list">
+                        <li>Argentina</li>
+                        <li>Bolivia</li>
+                        <li>Brazil</li>
+                        <li>Chile</li>
+                        <li>Colombia</li>
+                        <li>Ecuador</li>
+                        <li>Falkland Islands (Malvinas)</li>
+                        <li>French Guiana</li>
+                        <li>Guyana</li>
+                        <li>Paraguay</li>
+                        <li>Peru</li>
+                        <li>Suriname</li>
+                        <li>Uruguay</li>
+                        <li>Venezuela</li>                        
+                      </ul>
+                    </li>
+                    <li>
+                      <h3>The Caribbean</h3>
+                      <ul class="select-leaf-list">
+                        <li>Anguilla</li>
+                        <li>Antigua and Barbuda</li>
+                        <li>Aruba</li>
+                        <li>Bahamas</li>
+                        <li>Barbados</li>
+                        <li>Bonaire, Saint Eustatius and Saba</li>
+                        <li>British Virgin Islands</li>
+                        <li>Cayman Islands</li>
+                        <li>Cuba</li>
+                        <li>Curaçao</li>
+                        <li>Dominica</li>
+                        <li>Dominican Republic</li>
+                        <li>Grenada</li>
+                        <li>Guadeloupe</li>
+                        <li>Haiti</li>
+                        <li>Jamaica</li>
+                        <li>Martinique</li>
+                        <li>Monserrat</li>
+                        <li>Puerto Rico</li>
+                        <li>Saint-Barthélemy</li>
+                        <li>St. Kitts and Nevis</li>
+                        <li>Saint Lucia</li>
+                        <li>Saint Martin</li>
+                        <li>Saint Vincent and the Grenadines</li>
+                        <li>Sint Maarten</li>
+                        <li>Trinidad and Tobago</li>
+                        <li>Turks and Caicos Islands</li>
+                        <li>Virgin Islands (US)</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <!--The user's clicked li options are dynamically added to the value attribute of the below hidden input, which is submitted to the server
+                  upon submission of the form.-->
+                <div>
+                  <input id="country-selections-input" type="hidden" class="required" name="country-selections" value="">
+                </div>
+                <div class="button-container">
+                  <button type="button" class="prev">Previous</button>
+                  <button id="country-selector-input" type="button" class="next">Next</button>
+                </div>
+            </section>
+
+            <section class="section-9 form-section">
+              <div class="progress-container">
+                <label>Progress: <progress value="0" max="100"></progress></label>
+                <div class="section-number">Section <span></span></div>
+              </div>
+              <h2>Anything else?</h2>
+                <p>
+                  Is there anything else you would like to share with us so that we can
+                  maximise your travel experience?
+                </p>
+                  <div class="std-label-input separate-rows">
+                    <label for="any-other-info">Please enter anything else you would like to share.</label>
+                    <textarea id="any-other-info" name="any-other-info"></textarea>
+                  </div> 
+                  <div class="button-container">
+                    <button type="button" class="prev">Previous</button>
+                    <button type="button" class="next">Next</button>
+                  </div>    
+              </section>
+            
+              <section class="section-10 form-section">
+                <div class="progress-container">
+                  <label>Progress: <progress value="0" max="100"></progress></label>
+                  <div class="section-number">Section <span></span></div>
+                </div>
+                <h2>Review</h2>
+                  <p>
+                    Please check that your selections are as desired by using the 'Previous' buttons.
+                  </p>
+                  <p>If you are happy with your selections, please press submit below.</p>
+               <!-- Generate with JS and only show if JS is enabled -->
+               <div class="button-container">
+                <button type="button" class="prev">Previous</button>
+                <button type="submit" >Submit form</button>
+              </div>
+                </section>
+          </form>
+        </section>
+    </main>
+  </div>
+  <footer>
+    <!-- Per convention and to improve accessability, the footer contains navigation links to aid the user's navigation, as well as information
+    about the author of the document. A link to the current page is not provided. -->
+    <nav>
+      <a href="javascript:void(0);" title="Home link">Home</a>
+      <a href="javascript:void(0);" title="Page one link">Page one</a>
+      <a href="javascript:void(0);" title="Page two link">Page two</a>
+      <a href="javascript:void(0);" title="Page three link">Page three</a>
+    </nav>
+    <p>Created by Julian Khan</p>
+  </footer>
+  <!--Commence the execution of JavaScript code once the document tree is loaded by running the start() function, which functions as the main() function 
+  in programming languages such as Python and C++.-->
+  <script>start()</script>
+</body>
+</html>
